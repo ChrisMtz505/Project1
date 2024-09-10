@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -21,6 +22,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.project1.ui.theme.Project1Theme
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountBox
+import androidx.compose.material3.Icon
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -148,11 +152,82 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
     )
 }
 
+// Función BoxExample corregida
+@Composable
+fun BoxExample() {
+    Box(
+        modifier = Modifier
+            .background(Color.DarkGray)
+            .fillMaxWidth()
+            .padding(5.dp)
+    ) {
+        Image(
+            painter = painterResource(R.drawable.android_logo),
+            contentDescription = "Android Logo",
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.FillBounds
+        )
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 150.dp),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            Icon(
+                imageVector = Icons.Filled.AccountBox,
+                contentDescription = "Icon"
+            )
+            Text(
+                text = "Text",
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(10.dp)
+            )
+        }
+    }
+}
+
+// Función BoxExample2 corregida
+@Composable
+fun BoxExample2() {
+    Box(
+        modifier = Modifier
+            .background(Color.Magenta)
+            .padding(5.dp)
+            .size(250.dp)
+    ) {
+        Text(text = "TopStart", Modifier.align(Alignment.TopStart))
+        Text(text = "TopEnd", Modifier.align(Alignment.TopEnd))
+        Text(text = "CenterStart", Modifier.align(Alignment.CenterStart))
+        Text(text = "Center", Modifier.align(Alignment.Center))
+        Text(text = "CenterEnd", Modifier.align(Alignment.CenterEnd))
+        Text(text = "BottomStart", Modifier.align(Alignment.BottomStart))
+        Text(text = "BottomEnd", Modifier.align(Alignment.BottomEnd))
+    }
+}
+
 // Preview para ver la interfaz
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     Project1Theme {
         Content1()
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun BoxExamplePreview() {
+    Project1Theme {
+        BoxExample()
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun BoxExample2Preview() {
+    Project1Theme {
+        BoxExample2()
     }
 }
